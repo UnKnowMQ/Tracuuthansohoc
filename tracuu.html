@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="tracuu.css">
+    <title>Tra cuu</title>
+</head>
+<script>
+    $(document).ready(function(){
+    var path = window.location.pathname;
+    $('.h_menu_a').each(function(){
+    var href = new URL(this.href).pathname;
+    if (path == href) {
+    $(this).closest('li').addClass('active');
+    } else {
+    $(this).closest('li').removeClass('active');
+    }
+    });
+    });
+    $(document).ready(function(){
+    $('form').on('submit', function(e){
+    e.preventDefault();
+    var name = $('#name').val();
+    var dob = $('#dob').val();
+    if (!name) {
+    alert('Vui lòng nhập tên của bạn.');
+    return;
+    }
+    if (!dob) {
+    alert('Vui lòng nhập ngày tháng năm sinh của bạn.');
+     return;
+    }
+    dob = dob.split('-').join('');
+    var sum = 0;
+    for (var i = 0; i < dob.length; i++) {
+    sum += parseInt(dob[i]);
+    }
+    while (sum > 9) {
+    var temp = sum;
+    sum = 0;
+    while (temp > 0) {
+    sum += temp % 10;
+    temp = Math.floor(temp / 10);
+    }
+    }
+    var num = sum;
+    var loading = document.getElementById('loading'); loading.style.display = 'flex'; 
+    setTimeout(function() {
+    loading.style.display = 'none';
+    // Hiển thị thông báo trước khi chuyển trang 
+    $('#notification').css('display', 'flex');
+    $('#notification-text').text('Luận giải về con số của ' + name + ' đã hoàn tất');
+    $('#notification-button').click(function() {
+        $('#notification').css('display', 'none');
+        window.location.href = 'blogso' + num + '.html';
+        });
+    }, 2000);
+    });
+    });
+    </script>
+<body>
+    <div id="form">
+        <div class="research">
+        <form>
+        <label for="name" >Nhập tên của bạn:</label><br>
+        <input type="text" id="name" name="name" class="input-field"><br> <label for="dob">Nhập ngày tháng năm sinh của bạn:</label><br> <input type="date" id="dob" name="dob" class="input-field"><br> <input type="submit" value="Tra cứu" class="button">
+        <input type="reset" value="Huỷ" class="button">
+        </form>
+        </div> 
+        </div>
+        <div id="loading" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); align-items: center; justify-content: center;"> 
+        <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24">
+        <g>
+        <circle cx="12" cy="2.5" r="1.5" fill="#ec4899" opacity=".14"/> 
+        <circle cx="16.75" cy="3.77" r="1.5" fill="#ec4899" opacity=".29"/> 
+        <circle cx="20.23" cy="7.25" r="1.5" fill="#ec4899" opacity=".43"/> 
+        <circle cx="21.5" cy="12" r="1.5" fill="#ec4899" opacity=".57"/> 
+        <circle cx="20.23" cy="16.75" r="1.5" fill="#ec4899" opacity=".71"/> 
+        <circle cx="16.75" cy="20.23" r="1.5" fill="#ec4899" opacity=".86"/> 
+        <circle cx="12" cy="21.5" r="1.5" fill="#ec4899"/>
+        <animateTransform attributeName="transform" calcMode="discrete" dur="0.75s" repeatCount="indefinite" type="rotate" values="0 12 12;30 12 12;60 12 12;90 12 12;120 12 12;150 12 12;180 12 12;210 12 12;240 12 12;270 12 12;300 12 12;330 12 12; 360 12 12"/>
+        </g> 
+        </svg>
+        </div>
+        <div id="notification">
+        <div id="notification-content">
+        <h2 id="notification-text"></h2>
+        <button id="notification-button">Xem</button>
+        </div>
+</body>
+
+</html>

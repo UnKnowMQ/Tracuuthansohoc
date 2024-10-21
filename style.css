@@ -1,0 +1,36 @@
+
+.blog-post {
+margin-bottom: 40px;
+border-bottom: 1px solid #ddd; padding-bottom: 20px;
+}
+.blog-post h2 {
+
+font-size: 24px;
+color: #333;
+margin-bottom: 10px;
+.blog-post p {
+font-size: 16px;
+color: #666;
+}
+}
+.blog-post a {
+display: inline-block;
+color:
+#ec4899;
+text-decoration:
+none;
+margin-top: 10px;
+}
+.blog-post:hover {
+background-color: #f3f3f3;
+cursor: pointer;
+transition: background-color 0.3s
+}
+.blog-post h2:hover {
+color: #ec4899;
+text-decoration: underline;
+}
+.blog-post a:hover {
+color: #7e468e;
+text-decoration: underline;
+}
